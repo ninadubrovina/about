@@ -3,6 +3,9 @@
 <body>
   <img src="schaf.png" id="schaf" />
   <img src="klee.png" id="klee" />
+  <h1 id="zaehler">
+    0
+  </h1>
   <style>
     body {
       background-color: rgb(233, 181, 241);
@@ -15,13 +18,22 @@
     #klee {
       position: absolute;
     }
+
+    #zaehler {
+      position: absolute;
+      right: 10px;
+
+    }
   </style>
   <script>
     const schaf = document.getElementById("schaf");
     const klee = document.getElementById("klee");
+    const zaehlerText = document.getElementById("zaehler");
+
     var schafTop = 0;
     var schafLeft = 0;
     var schafRotate = 0;
+    var zaehler = 0;
     function getBounds(obj) {
       return {
         left: obj.x,
@@ -73,6 +85,8 @@
         randomKleePosition();
         const maeh = new Audio("maeh.mp3");
         maeh.play();
+        zaehler += 1;
+        zaehlerText.innerText = zaehler;
       }
     }
     randomKleePosition();
