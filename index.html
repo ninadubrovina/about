@@ -61,6 +61,7 @@
       schaf.style.left = schafLeft + "px";
       schaf.style.rotate = schafRotate + "deg";
       schafKleeblattTreffer();
+
     }
     function randomKleePosition() {
       klee.style.top = window.innerHeight * Math.random() + "px";
@@ -70,6 +71,8 @@
     function schafKleeblattTreffer() {
       if (hitCalculation(schaf, klee)) {
         randomKleePosition();
+        const maeh = new Audio("maeh.mp3");
+        maeh.play();
       }
     }
     randomKleePosition();
