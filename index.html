@@ -2,6 +2,7 @@
 
 <body>
   <img src="schaf.png" id="schaf" />
+  <img src="klee.png" id="klee" />
   <style>
     body {
       background-color: rgb(233, 181, 241);
@@ -10,13 +11,35 @@
     #schaf {
       position: absolute;
     }
+
+    #klee {
+      position: absolute;
+    }
   </style>
   <script>
     const schaf = document.getElementById("schaf");
+    const klee = document.getElementById("klee");
     var schafTop = 0;
     var schafLeft = 0;
     var schafRotate = 0;
-
+    function getBounds(obj) {
+      return {
+        left: obj.x,
+        right: obj.x + obj.width,
+        top: obj.y,
+        bottom: obj.y + obj.height
+      };
+    }
+    function hitCalculation(obj1, obj2) {
+      const obj1Bounds = getBounds(obj1);
+      const obj2Bounds = getBounds(obj2);
+      const hit = !(obj1Bounds.top > obj2Bounds.bottom ||
+        obj1Bounds.right < obj2Bounds.left ||
+        obj1Bounds.bottom < obj2Bounds.top ||
+        obj1Bounds.left > obj2Bounds.right);
+      // console.log(`hit calculation result : ${hit} details: ${JSON.stringify(obj1Bounds)} and ${JSON.stringify(obj2Bounds)}`)
+      return hit;
+    }
     document.onkeydown = function (evt) {
       if (evt.key == "ArrowDown") {
         schafTop += 10;
@@ -37,7 +60,19 @@
       schaf.style.top = schafTop + "px";
       schaf.style.left = schafLeft + "px";
       schaf.style.rotate = schafRotate + "deg";
+      schafKleeblattTreffer();
     }
+    function randomKleePosition() {
+      klee.style.top = window.innerHeight * Math.random() + "px";
+      klee.style.left = window.innerWidth * Math.random() + "px";
+
+    }
+    function schafKleeblattTreffer() {
+      if (hitCalculation(schaf, klee)) {
+        randomKleePosition();
+      }
+    }
+    randomKleePosition();
 
   </script>
 </body>
