@@ -1,5 +1,40 @@
 <html>
-  <body>
-    hallo welt 
-  </body>
+
+<body>
+  <h1 id="hallo"> hallo welt </h1>
+  <h2> bonjour</h2>
+  <style>
+    body {
+      background-color: rgb(233, 181, 241);
+    }
+
+    #hallo {
+      position: absolute;
+    }
+  </style>
+  <script>
+    const hallo = document.getElementById("hallo");
+    var halloTop = 0;
+    var halloLeft = 0;
+
+    document.onkeydown = function (evt) {
+      if (evt.key == "ArrowDown") {
+        halloTop += 10;
+      }
+      if (evt.key == "ArrowUp") {
+        halloTop -= 10;
+      }
+      if (evt.key == "ArrowLeft") {
+        halloLeft -= 10;
+      }
+      if (evt.key == "ArrowRight") {
+        halloLeft += 10;
+      }
+      hallo.style.top = halloTop + "px";
+      hallo.style.left = halloLeft + "px";
+    }
+
+  </script>
+</body>
+
 </html>
