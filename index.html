@@ -15,22 +15,28 @@
     const schaf = document.getElementById("schaf");
     var schafTop = 0;
     var schafLeft = 0;
+    var schafRotate = 0;
 
     document.onkeydown = function (evt) {
       if (evt.key == "ArrowDown") {
         schafTop += 10;
+        schafRotate = 0;
       }
       if (evt.key == "ArrowUp") {
         schafTop -= 10;
+        schafRotate = 0;
       }
       if (evt.key == "ArrowLeft") {
         schafLeft -= 10;
+        schafRotate = 270;
       }
       if (evt.key == "ArrowRight") {
         schafLeft += 10;
+        schafRotate = 90;
       }
       schaf.style.top = schafTop + "px";
       schaf.style.left = schafLeft + "px";
+      schaf.style.rotate = schafRotate + "deg";
     }
 
   </script>
