@@ -73,8 +73,38 @@
       schaf.style.left = schafLeft + "px";
       schaf.style.rotate = schafRotate + "deg";
       schafKleeblattTreffer();
-
     }
+    let initialX = 0;
+    let initialY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      // Prevent the default touch behavior
+      e.preventDefault();
+
+      // Get the initial touch position
+      initialX = e.touches[0].clientX;
+      initialY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchmove', function (e) {
+      // Prevent the default touch behavior
+      e.preventDefault();
+
+      // Calculate how far the touch has moved
+      const deltaX = e.touches[0].clientX - initialX;
+      const deltaY = e.touches[0].clientY - initialY;
+
+      // Update the position of the div
+      schaf.style.left = `${schaf.offsetLeft + deltaX}px`;
+      schaf.style.top = `${schaf.offsetTop + deltaY}px`;
+
+      // Update the initial position for the next move
+      initialX = e.touches[0].clientX;
+      initialY = e.touches[0].clientY;
+
+      schafKleeblattTreffer();
+    });
+
     function randomKleePosition() {
       klee.style.top = window.innerHeight * Math.random() + "px";
       klee.style.left = window.innerWidth * Math.random() + "px";
